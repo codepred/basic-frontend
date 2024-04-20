@@ -1,0 +1,99 @@
+@import "./variables";
+
+:root {
+    font-family: 'Open Sans';
+    line-height: 1.5;
+    font-weight: 400;
+  
+    color-scheme: light dark;
+    color: $color-primary;
+    background-color: #242424;
+  
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  body {
+    margin: 0;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    position: relative;
+    font-weight: normal;
+    font-family: 'Work Sans', sans-serif;
+    color: $color-primary;
+  }
+  
+  a {
+    font-weight: 500;
+    text-decoration: inherit;
+  }
+  
+  a:hover {
+  }
+  
+  body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+  }
+  
+  h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+  }
+  
+  .card {
+    padding: 2em;
+  }
+  
+  #app, #__nuxt {
+    width: 100vw;
+    min-height: 100vh;
+    min-width: 1400px;
+  }
+  
+  @media (prefers-color-scheme: light) {
+    :root {
+        color: $color-primary;
+      background-color: #ffffff;
+    }
+  
+    a:hover {
+      color: #747bff;
+    }
+  
+    button {
+      background-color: #f9f9f9;
+    }
+  }
+
+input,
+select,
+textarea {
+	width: 100%;
+	padding: 12px 16px;
+	height: 46px;
+	background: #feffff;
+	border: 1px solid #a5a89d;
+	border-radius: 6px;
+    color: $color-primary;
+
+	&:disabled {
+		background: #eeeeee;
+		cursor: default;
+	}
+
+	&.error {
+		border: 1px solid #e40000;
+	}
+}

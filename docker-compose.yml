@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  flatpred-frontend:
+    image: flatpred-frontend:latest
+    container_name: flatpred-frontend
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    networks:
+      - flatpred-net
