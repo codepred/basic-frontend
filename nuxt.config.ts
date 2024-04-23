@@ -3,7 +3,27 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     // ...
-    '@pinia/nuxt',
+    [
+      '@pinia/nuxt',
+      {
+        autoImports: ['defineStore', 'acceptHMRUpdate'],
+      },
+    ],
+    [
+      '@vee-validate/nuxt',
+      {
+        autoImports: true,
+        componentNames: {
+          Form: 'VeeForm',
+          Field: 'VeeField',
+          FieldArray: 'VeeFieldArray',
+          ErrorMessage: 'VeeErrorMessage',
+        },
+      },
+    ],
   ],
-  css: ['./assets/scss/main.scss']
+  imports: {
+    dirs: ['stores']
+  },
+  css: ['./assets/scss/main.scss'],
 })

@@ -1,61 +1,57 @@
 <script setup lang="ts">
 import IconLogo from '~/assets/IconLogo.vue';
+import * as yup from 'yup';
+import { useBackendUrlStore } from '../store/backendUrl'
+import { useForm } from 'vee-validate';
+
 const user = ref({
     username: '',
     password: '',
 });
 
-const login = async () => {
-    // TODO send user Data to the login endpoint and redirect if  successful 
-};
+const backendUrl = useBackendUrlStore()
+
+const { isSubmitting } = useForm();
+
+const schema = yup.object({
+    email: yup.string().required().email(),
+    password: yup.string().required().min(8),
+});
+
+async function onSubmit(values: any): void {
+}
+
+function handleError(values: any) {
+    // test
+}
 
 </script>
 
 <template>
-    <div class="background" style="width: 100%; height: 100%; min-height:1000px; display: flex; justify-content: center;">
-        <!-- <Dialog>
-            <slot>
-                <div class="title">
-                    <h2>Login</h2>
-                </div>
-                <div class="container form">
-                    <label for="uname"><b>Username</b></label>
-                    <input v-model="user.username" type="text" class="input" placeholder="Enter Username" name="uname"
-                        required />
-
-                    <label for="psw"><b>Password</b></label>
-                    <input v-model="user.password" type="password" class="input" placeholder="Enter Password" name="psw"
-                        required />
-
-                    <button @click.prevent="login" class="button">Login</button>
-                </div>
-            </slot>
-        </Dialog> -->
-        <div class="dialog-container" style="display: flex; flex-direction: column; gap: 20px;">
-            <IconLogo style="margin: auto;" />
+    <div class="background"
+        style="width: 100%; height: 100%; min-height:1000px; display: flex; justify-content: center;">
+        <div class="dialog-container">
+            <div>
+                <IconLogo style="margin: auto; width: 100%;" />
+            </div>
             <div class="title">
                 <h2>Logowanie</h2>
             </div>
-                <div>
-                    <label for="uname"><b>Login</b></label>
-                    <input v-model="user.username" type="text" class="input" placeholder="Enter Username" name="uname"
-                        required />
-                </div>
-
-                <div>
-                    <label for="psw"><b>Hasło</b></label>
-                    <input v-model="user.password" type="password" class="input" placeholder="Enter Password" name="psw"
-                        required />
-                </div>
-
-            <button @click.prevent="login" class="button">Login</button>
+            <VeeForm ref="registrationForm" @submit="onSubmit" @invalid-submit="handleError" :validation-schema="schema"
+                style="display: flex; flex-direction: column; gap: 10px;">
+                <VeeField name="email" type="email" rules="required|email" />
+                <VeeErrorMessage :custom-messages="{ required: 'test' }" name="email" />
+                <VeeField name="password" type="password" />
+                <VeeErrorMessage name="password" />
+                <button class="button"> {{ isSubmitting ? "Logowanie..." : "Zaloguj" }} </button>
+            </VeeForm>
         </div>
     </div>
 </template>
 
 <style scoped lang="scss">
 .dialog-container {
-    border-radius: 50px;
+    border-radius: 20px;
     padding-right: clamp(16px, 10%, 56px);
     padding-left: clamp(16px, 10%, 56px);
     padding-top: clamp(16px, 10%, 48px);

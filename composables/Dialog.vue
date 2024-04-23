@@ -7,7 +7,7 @@
 <style scoped lang="scss">
 
 .dialog-container {
-	border-radius: 50px;
+	border-radius: 20px;
 	padding-right: clamp(16px, 10%, 56px);
 	padding-left: clamp(16px, 10%, 56px);
 	padding-top: clamp(16px, 10%, 48px);
